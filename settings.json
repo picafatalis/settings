@@ -26,15 +26,11 @@
     "workbench.sideBar.location": "right",
     "notebook.output.linkifyFilePaths": false,
     "breadcrumbs.enabled": false,
-    "workbench.colorTheme": "Aura Dark",
     "editor.lineNumbers": "off",
     "editor.glyphMargin": false,
     "editor.scrollbar.horizontal": "hidden",
     "editor.scrollbar.vertical": "hidden",
     "editor.scrollbar.verticalScrollbarSize": 10,
-    "workbench.colorCustomizations": {
-        "editor.background": "#000000"
-    },
     "window.commandCenter": false,
     "workbench.editor.editorActionsLocation": "hidden",
     "editor.suggest.showStatusBar": true,
@@ -46,5 +42,7 @@
     "C:\\Users\\yvryp\\AppData\\Local\\Temp\\postman-folder-pre-request.instructions.md": true,
     "C:\\Users\\yvryp\\AppData\\Local\\Temp\\postman-http-request-post-response.instructions.md": true,
     "C:\\Users\\yvryp\\AppData\\Local\\Temp\\postman-http-request-pre-request.instructions.md": true
-}
+},
+"workbench.colorTheme": "Catppuccin Mocha",
+"catppuccin.accentColor": "pink",
 }
