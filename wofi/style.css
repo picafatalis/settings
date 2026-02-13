@@ -1,0 +1,35 @@
+#window{
+    border-radius: 8px;
+    opacity: 0.9;
+}
+
+#outer-box{
+    border-radius: 8px;
+    font-size: 16px;
+    border: 1px solid #f09ad98f;
+    padding: 8px;
+    box-sizing: border-box;
+    background-color: #181825;
+}
+
+#text{
+    list-style: none;
+    width: 200px;
+}
+
+#img{
+    margin: 0 8px;
+}
+
+#entry{
+    padding: 4px;
+}
+
+#entry details{
+    background-color: green !important;
+}
+
+#input{
+    margin-bottom: 10px;
+    background-color: #1e1e2e;
+}
