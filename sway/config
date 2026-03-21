@@ -5,31 +5,7 @@
 # Read `man 5 sway` for a complete reference.
 
 exec_always autotiling
-default_border pixel 1
 
-### Colors
-
-gaps inner 5
-
-gaps right 5
-gaps left 5
-gaps bottom 5
-
-## exec_always --no-startup-id /usr/libexec/xdg-desktop-portal-gtk
-
-exec systemctl --user start xdg-desktop-portal-gtk xdg-desktop-portal-wlr
-
-exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
-
-exec systemctl --user import-environment WAYLAND_DISPLAY XDG_CURRENT_DESKTOP
-
-exec otd-daemon
-
-set $fc_color #f5c2e7
-
-client.focused $fc_color $fc_color $fc_color $fc_color
-
-# The window that has focus.
 
 ### Variables
 #
@@ -40,28 +16,25 @@ set $left h
 set $down j
 set $up k
 set $right l
+
 # Your preferred terminal emulator
 set $term foot
+
 # Your preferred application launcher
 # Note: pass the final command to swaymsg so that the resulting window can be opened
 # on the original workspace that the command was run on.
-set $menu wofi
+set $menu wofi --show drun
 
 include /etc/sway/config-vars.d/*
 
 ### Output configuration
 #
 # Default wallpaper (more resolutions are available in /usr/share/backgrounds/sway/)
-output * bg /home/anny/Imagens/dark-forest.jpg fill
+output * bg ~/Downloads/dark-forest.jpg fill
 #
 # Example configuration:
 #
-output X11-1 resolution 1366x768 position 1920,0
-
-output HDMI-1 enable
-output HDMI-1 scale 1
-output HDMI-1 resolution 1920x1080 position 0 0
-
+#   output HDMI-A-1 resolution 1920x1080 position 1920,0
 #
 # You can get the names of your outputs by running: swaymsg -t get_outputs
 
@@ -88,13 +61,6 @@ output HDMI-1 resolution 1920x1080 position 0 0
 #       natural_scroll enabled
 #       middle_emulation enabled
 #   }
-
-input * {
-    xkb_layout " us(intl)"
-    repeat_delay 500
-
-}
-
 #
 # You can get the names of your inputs by running: swaymsg -t get_inputs
 # Read `man 5 sway-input` for more information about this section.
@@ -185,8 +151,7 @@ input * {
     bindsym $mod+v splitv
 
     # Switch the current container between different layout styles
-    ## bindsym $mod+s layout stacking
-    ## bindsym $mod+w layout tabbed
+    bindsym $mod+w layout tabbed
     bindsym $mod+e layout toggle split
 
     # Make the current focus fullscreen
@@ -237,29 +202,72 @@ mode "resize" {
 }
 bindsym $mod+r mode "resize"
 
-## os que eu criei pra nao ficar confuso
-
-bindsym $mod+s exec grim
-
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggleb
-
-# Mapeia o tablet para a tela (substitua pelo nome do seu monitor se necessário)
-input "type:tablet_tool" {
-    map_to_output *
-}
-
-
 #
 # Status Bar:
 #
 # Read `man 5 sway-bar` for more information about this section.
-
 bar {
 	swaybar_command waybar
 }
 
-## include /etc/sway/config.d/*
+##  My configs
+
+# Screenshot
+
+bindsym $mod+s exec grim -g "$(slurp)"
+
+# Sound
+
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+
+# No titlebars
+
+default_border pixel 1
+
+input * {
+    xkb_layout "us(intl)"
+    repeat_delay 500
+}
+
+
+# Colors
+
+set $rosewater #f5e0dc
+set $flamingo #f2cdcd
+set $pink #f5c2e7
+set $mauve #cba6f7
+set $red #f38ba8
+set $maroon #eba0ac
+set $peach #fab387
+set $yellow #f9e2af
+set $green #a6e3a1
+set $teal #94e2d5
+set $sky #89dceb
+set $sapphire #74c7ec
+set $blue #89b4fa
+set $lavender #b4befe
+set $text #cdd6f4
+set $subtext1 #bac2de
+set $subtext0 #a6adc8
+set $overlay2 #9399b2
+set $overlay1 #7f849c
+set $overlay0 #6c7086
+set $surface2 #585b70
+set $surface1 #45475a
+set $surface0 #313244
+set $base #1e1e2e
+set $mantle #181825
+set $crust #11111b
+
+
+# target                 title     bg    text   indicator  border
+client.focused           $pink     $base $pink  $rosewater $pink
+client.focused_inactive  $surface0 $base $text  $rosewater $surface0
+client.unfocused         $surface0 $base $text  $rosewater $surface0
+client.urgent            $peach    $base $peach $surface0  $peach
+client.placeholder       $surface0 $base $text  $surface0  $surface0
+client.background        $base
+
+include /etc/sway/config.d/*
